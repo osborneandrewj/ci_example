@@ -24,3 +24,21 @@ def conv_num(num_str):
     conv_number = 0
 
     return conv_number
+
+
+def my_datetime(num_sec):
+    """Docstring here
+
+    Returns:
+    """
+
+    return None
+
+
+def conv_endian(num, endian='big'):
+    """Docstring here
+
+    Returns:
+    """
+
+    return None
