@@ -4,9 +4,10 @@ Authors: Andrew Osborne, nextAuth, nextAuth
 Date: Spring Quarter 2023
 """
 
+
 def conv_num(num_str):
     """Converts a string into a base 10 number
-    
+
     Takes a string (num_str) and converts it into a base
     10 number (conv_number), and returns that number.
 
