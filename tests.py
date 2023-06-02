@@ -34,6 +34,13 @@ class FunctionOneTests(unittest.TestCase):
         value = "99.00G"
         self.assertIsNone(conv_num(value), msg='conv_num({})'.format(value))
 
+    def test5(self):
+        """Checks that string '123' is returned int 123"""
+        value = "123"
+        expected = 123
+        self.assertEqual(conv_num(value), expected,
+                         msg='conv_num({})'.format(value))
+
 
 if __name__ == '__main__':
     unittest.main()
