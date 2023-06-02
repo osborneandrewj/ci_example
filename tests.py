@@ -24,6 +24,11 @@ class FunctionOneTests(unittest.TestCase):
         value = ""
         self.assertIsNone(conv_num(value), msg='conv_num({})'.format(value))
 
+    def test3(self):
+        """Checks that a double .. string input is returned None"""
+        value = "1.0."
+        self.assertIsNone(conv_num(value), msg='conv_num({})'.format(value))
+
 
 if __name__ == '__main__':
     unittest.main()

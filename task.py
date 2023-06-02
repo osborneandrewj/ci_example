@@ -21,6 +21,9 @@ def conv_num(num_str):
     if len(num_str) == 0:
         return None
 
+    if num_str.count('.') > 1:
+        return None
+
     conv_number = 0
 
     return conv_number
