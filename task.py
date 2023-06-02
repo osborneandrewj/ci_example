@@ -6,6 +6,7 @@ Date: Spring Quarter 2023
 
 import string
 
+
 def conv_num(num_str):
     """Converts a string into a base 10 number
 
