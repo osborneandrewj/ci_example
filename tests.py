@@ -29,6 +29,11 @@ class FunctionOneTests(unittest.TestCase):
         value = "1.0."
         self.assertIsNone(conv_num(value), msg='conv_num({})'.format(value))
 
+    def test4(self):
+        """Checks that an invalid character is returned None"""
+        value = "99.00G"
+        self.assertIsNone(conv_num(value), msg='conv_num({})'.format(value))
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -4,6 +4,7 @@ Authors: Andrew Osborne, nextAuth, nextAuth
 Date: Spring Quarter 2023
 """
 
+import string
 
 def conv_num(num_str):
     """Converts a string into a base 10 number
@@ -23,6 +24,11 @@ def conv_num(num_str):
 
     if num_str.count('.') > 1:
         return None
+
+    for i in num_str:
+        if i != '.':
+            if string.hexdigits.find(i) is False:
+                return None
 
     conv_number = 0
 
