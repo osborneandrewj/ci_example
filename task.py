@@ -56,11 +56,11 @@ def conv_num(num_str):
                 continue
         if c == ".":
             float_flag = True
-            decimal_place = i+1
+            decimal_place = i
             continue
         # get place value
         if float_flag is True:
-            p_value = 10**(-i - decimal_place)
+            p_value = 10**(-(i - decimal_place))
         else:
             p_value = 10**(len(num_str) - (i+1))
         num_value = ord(c) - 48
