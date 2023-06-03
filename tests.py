@@ -23,6 +23,7 @@ class FunctionOneTests(unittest.TestCase):
         """Checks that an empty string input is returned None"""
         value = ""
         self.assertIsNone(conv_num(value), msg='conv_num({})'.format(value))
+        
 
 class FunctionTwoTests(unittest.TestCase):
     """
