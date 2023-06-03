@@ -26,9 +26,9 @@ def conv_num(num_str):
     if num_str.count('.') > 1:
         return None
 
-    for i in num_str:
-        if i != "." or i != "-":
-            if string.hexdigits.find(i) == -1:
+    for c in num_str:
+        if c not in (".", "-"):
+            if string.hexdigits.find(c) == -1:
                 return None
 
     conv_number = 0
