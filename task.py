@@ -32,13 +32,15 @@ def my_datetime(num_sec):
     01/01/1970, converts it to a date and returns it as a string
 
     Returns:
-    conv_date as a string
+    new_datetime as a string
     """
 
     if isinstance(num_sec, int) is not True:
         return None
 
-    return conv_date
+    new_datetime = ''
+
+    return new_datetime
 
 
 def conv_endian(num, endian='big'):
