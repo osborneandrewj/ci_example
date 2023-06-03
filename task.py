@@ -1,6 +1,6 @@
 """This is a project for CS 362 exploring continuous integration
 
-Authors: Andrew Osborne, nextAuth, nextAuth
+Authors: Andrew Osborne, John Oliver, nextAuth
 Date: Spring Quarter 2023
 """
 
@@ -27,12 +27,20 @@ def conv_num(num_str):
 
 
 def my_datetime(num_sec):
-    """Docstring here
+    """
+    Takes an integer as an input that represents a number of seconds since
+    01/01/1970, converts it to a date and returns it as a string
 
     Returns:
+    new_datetime as a string
     """
 
-    return None
+    if isinstance(num_sec, int) is not True:
+        return None
+
+    new_datetime = ''
+
+    return new_datetime
 
 
 def conv_endian(num, endian='big'):
