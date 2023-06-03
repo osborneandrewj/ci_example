@@ -7,6 +7,30 @@ Date: Spring Quarter 2023
 import string
 
 
+def is_str_valid(num_str):
+    """Searches a string for invalid characters
+
+    Returns:
+    False if invalid characters are found, True if none are found
+    """
+
+    if isinstance(num_str, str) is not True:
+        return False
+
+    if len(num_str) == 0:
+        return False
+
+    if num_str.count('.') > 1:
+        return False
+
+    for c in num_str:
+        if c not in (".", "-"):
+            if string.hexdigits.find(c) == -1:
+                return False
+
+    return True
+
+
 def conv_num(num_str):
     """Converts a string into a base 10 number
 
@@ -17,19 +41,8 @@ def conv_num(num_str):
     conv_num as an int
     """
 
-    if isinstance(num_str, str) is not True:
+    if is_str_valid(num_str) is False:
         return None
-
-    if len(num_str) == 0:
-        return None
-
-    if num_str.count('.') > 1:
-        return None
-
-    for c in num_str:
-        if c not in (".", "-"):
-            if string.hexdigits.find(c) == -1:
-                return None
 
     conv_number = 0
     negative_flag = False
