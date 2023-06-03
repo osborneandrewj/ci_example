@@ -118,8 +118,6 @@ def my_datetime(num_sec):
 
     new_datetime = ''
 
-    num_days = num_sec // 86400
-
     return new_datetime
 
 
