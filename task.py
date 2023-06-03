@@ -121,6 +121,27 @@ def my_datetime(num_sec):
     return new_datetime
 
 
+def is_leap_year(year):
+    """
+    Takes an int representing a year and determines whether or not that
+    year is a leap_year
+
+    Returns:
+    A boolean
+    """
+
+    if (year % 4) == 0:
+        if (year % 100) == 0:
+            if (year % 400) == 0:
+                return True
+            else:
+                return False
+        else:
+            return True
+    else:
+        return False
+
+
 def conv_endian(num, endian='big'):
     """Docstring here
 

@@ -1,5 +1,5 @@
 import unittest
-from task import conv_num, my_datetime
+from task import conv_num, my_datetime, is_leap_year
 
 
 class TestCase(unittest.TestCase):
@@ -85,6 +85,26 @@ class FunctionTwoTests(unittest.TestCase):
         """Checks that a string input is returned None"""
         value = '123'
         self.assertIsNone(my_datetime(value), msg='my_datetime({})'.format(value))
+
+    def test3(self):
+        """Checks that 1972 is a leap year"""
+        value = 1972
+        self.assertTrue(is_leap_year(value), msg='is_leap_year({})'.format(value))
+
+    def test4(self):
+        """Checks that 1982 is not a leap year"""
+        value = 1982
+        self.assertFalse(is_leap_year(value), msg='is_leap_year({})'.format(value))
+
+    def test5(self):
+        """Checks that 1900 is not a leap year"""
+        value = 1900
+        self.assertFalse(is_leap_year(value), msg='is_leap_year({})'.format(value))
+
+    def test6(self):
+        """Checks that 2000 is a leap year"""
+        value = 2000
+        self.assertTrue(is_leap_year(value), msg='is_leap_year({})'.format(value))
 
 
 if __name__ == '__main__':
