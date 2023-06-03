@@ -27,18 +27,25 @@ def conv_num(num_str):
         return None
 
     for i in num_str:
-        if i != ".":
+        if i != "." or i != "-":
             if string.hexdigits.find(i) == -1:
                 return None
 
     conv_number = 0
+    negative_flag = False
 
-    for i in range(0, len(num_str)):
+    for i, c in enumerate(num_str):
+        if i == 0:
+            if c == "-":
+                negative_flag = True
+                continue
         # get place value
         p_value = 10**(len(num_str) - (i+1))
-        num_value = ord(num_str[i]) - 48
+        num_value = ord(c) - 48
         conv_number += p_value*num_value
 
+    if negative_flag is True:
+        conv_number = conv_number * -1
     return conv_number
 
 

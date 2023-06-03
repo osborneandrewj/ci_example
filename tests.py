@@ -41,6 +41,20 @@ class FunctionOneTests(unittest.TestCase):
         self.assertEqual(conv_num(value), expected,
                          msg='conv_num({})'.format(value))
 
+    def test6(self):
+        """Checks that string '-123' is returned negative int -123"""
+        value = "-123"
+        expected = -123
+        self.assertEqual(conv_num(value), expected,
+                         msg='conv_num({})'.format(value))
+
+    def test7(self):
+        """Checks that string '0.45' is returned float 0.45"""
+        value = "0.45"
+        expected = 0.45
+        self.assertEqual(conv_num(value), expected,
+                         msg='conv_num({})'.format(value))
+
 
 if __name__ == '__main__':
     unittest.main()
