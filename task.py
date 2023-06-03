@@ -23,12 +23,40 @@ def is_str_valid(num_str):
     if num_str.count('.') > 1:
         return False
 
-    for c in num_str:
-        if c not in (".", "-"):
-            if string.hexdigits.find(c) == -1:
+    if num_str[0] == "0" and num_str[1] == "x":
+        for i in range(2, len(num_str) - 1):
+            if string.hexdigits.find(num_str[i]) == -1:
                 return False
+    else:
+        for c in num_str:
+            if c not in (".", "-"):
+                if string.hexdigits.find(c) == -1:
+                    return False
 
     return True
+
+
+def convert_hex(num_str):
+    """Converts a hexidecimal string into number
+
+    Returns:
+    the hexidecimal input as a number"""
+
+    hex_dict = {"A": 10, "B": 11, "C": 12, "D": 13, "E": 14,
+                "F": 15}
+    hex_num = 0
+    hex_str = num_str[2:len(num_str)]
+
+    for i, c in enumerate(hex_str):
+        # get place value
+        p_value = (16**(len(hex_str) - (i+1)))
+        if c in hex_dict:
+            num_value = hex_dict[c]
+        else:
+            num_value = ord(c) - 48
+        hex_num += p_value*num_value
+
+    return hex_num
 
 
 def conv_num(num_str):
@@ -45,6 +73,11 @@ def conv_num(num_str):
         return None
 
     conv_number = 0
+
+    if num_str[0] == "0" and num_str[1] == "x":
+        conv_number = convert_hex(num_str)
+        return conv_number
+
     negative_flag = False
     float_flag = False
     decimal_place = 0

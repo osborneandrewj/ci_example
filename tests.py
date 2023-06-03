@@ -55,6 +55,13 @@ class FunctionOneTests(unittest.TestCase):
         self.assertEqual(conv_num(value), expected,
                          msg='conv_num({})'.format(value))
 
+    def test8(self):
+        """Checks that string '0xAD4' is returned 2772"""
+        value = "0xAD4"
+        expected = 2772
+        self.assertEqual(conv_num(value), expected,
+                         msg='conv_num({})'.format(value))
+
 
 if __name__ == '__main__':
     unittest.main()
