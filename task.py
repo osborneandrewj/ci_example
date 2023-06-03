@@ -33,14 +33,23 @@ def conv_num(num_str):
 
     conv_number = 0
     negative_flag = False
+    float_flag = False
+    decimal_place = 0
 
     for i, c in enumerate(num_str):
         if i == 0:
             if c == "-":
                 negative_flag = True
                 continue
+        if c == ".":
+            float_flag = True
+            decimal_place = i+1
+            continue
         # get place value
-        p_value = 10**(len(num_str) - (i+1))
+        if float_flag is True:
+            p_value = 10**(-i - decimal_place)
+        else:
+            p_value = 10**(len(num_str) - (i+1))
         num_value = ord(c) - 48
         conv_number += p_value*num_value
 
