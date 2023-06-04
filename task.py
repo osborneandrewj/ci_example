@@ -161,29 +161,19 @@ def my_datetime(num_sec):
                 current_year = current_year + 1
             else:
                 if num_days > 0:
-                    for i in range(1, (len(leap_year) + 1)):
-                        if (num_days - leap_year[i]) < 0:
-                            current_month = i
-                            break
-                        else:
-                            num_days = num_days - leap_year[i]
-                            current_month = i
-                    current_day = current_day + num_days
-                    num_days = 0   
+                    month_and_days = get_current_month(leap_year, num_days)
+                    current_month = month_and_days[0]
+                    current_day = current_day + month_and_days[1]
+                    num_days = 0
         else:
             if num_days >= 365:
                 num_days = num_days - 365
                 current_year = current_year + 1
             else:
                 if num_days > 0:
-                    for i in range(1, (len(common_year) + 1)):
-                        if (num_days - common_year[i]) < 0:
-                            current_month = i
-                            break
-                        else:
-                            num_days = num_days - common_year[i]
-                            current_month = i
-                    current_day = current_day + num_days
+                    month_and_days = get_current_month(common_year, num_days)
+                    current_month = month_and_days[0]
+                    current_day = current_day + month_and_days[1]
                     num_days = 0
 
     new_datetime = build_string(current_year, current_month, current_day)
@@ -215,7 +205,7 @@ def build_string(year, month, day):
     """
     Takes three ints representing a given year, a given month, and a
     given day and builds a string representation of the date
-    
+
     Returns:
     A string
     """
@@ -231,6 +221,26 @@ def build_string(year, month, day):
         day_str = str(day)
 
     return month_str + "-" + day_str + "-" + str(year)
+
+
+def get_current_month(calendar, days):
+    """
+    Calculates the month and the number of remaining days
+
+    Returns:
+    A tuple representing the month and number of remaining days, both
+    as an int
+    """
+
+    for i in range(1, (len(calendar) + 1)):
+        if (days - calendar[i]) < 0:
+            current_month = i
+            break
+        else:
+            days = days - calendar[i]
+            current_month = i
+
+    return current_month, days
 
 
 def conv_endian(num, endian='big'):
