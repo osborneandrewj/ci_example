@@ -117,7 +117,86 @@ def my_datetime(num_sec):
         return None
 
     new_datetime = ''
+    num_days = num_sec // 86400
 
+    common_year = {
+        1: 31,
+        2: 28,
+        3: 31,
+        4: 30,
+        5: 31,
+        6: 30,
+        7: 31,
+        8: 31,
+        9: 30,
+        10: 31,
+        11: 30,
+        12: 31
+    }
+
+    leap_year = {
+        1: 31,
+        2: 29,
+        3: 31,
+        4: 30,
+        5: 31,
+        6: 30,
+        7: 31,
+        8: 31,
+        9: 30,
+        10: 31,
+        11: 30,
+        12: 31
+    }
+
+    current_year = 1970
+    current_month = 1
+    current_day = 1
+
+    while num_days > 0:
+
+        if is_leap_year(current_year) is True:
+            if num_days >= 366:
+                num_days = num_days - 366
+                current_year = current_year + 1
+            else:
+                if num_days > 0:
+                    for i in range(1, (len(leap_year) + 1)):
+                        if (num_days - leap_year[i]) < 0:
+                            current_month = i
+                            break
+                        else:
+                            num_days = num_days - leap_year[i]
+                            current_month = i
+                    current_day = current_day + num_days
+                    num_days = 0      
+        else:
+            if num_days >= 365:
+                num_days = num_days - 365
+                current_year = current_year + 1
+            else:
+                if num_days > 0:
+                    for i in range(1, (len(common_year) + 1)):
+                        if (num_days - common_year[i]) < 0:
+                            current_month = i
+                            break
+                        else:
+                            num_days = num_days - common_year[i]
+                            current_month = i
+                    current_day = current_day + num_days
+                    num_days = 0
+
+    if current_month < 10:
+        month_str = "0" + str(current_month)
+    else:
+        month_str = str(current_month)
+
+    if current_day < 10:
+        day_str = "0" + str(current_day)
+    else:
+        day_str = str(current_day)
+
+    new_datetime = month_str + "-" + day_str + "-" + str(current_year)
     return new_datetime
 
 

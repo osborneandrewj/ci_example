@@ -106,6 +106,36 @@ class FunctionTwoTests(unittest.TestCase):
         value = 2000
         self.assertTrue(is_leap_year(value), msg='is_leap_year({})'.format(value))
 
+    def test7(self):
+        """Checks that an input of 0 returns a string of '01-01-1970'"""
+        value = 0
+        expected = '01-01-1970'
+        self.assertEqual(my_datetime(value), expected, msg='my_datetime({})'.format(value))
+
+    def test8(self):
+        """Checks that an input 123456789 returns a string of '11-29-1973'"""
+        value = 123456789
+        expected = '11-29-1973'
+        self.assertEqual(my_datetime(value), expected, msg='my_datetime({})'.format(value))
+
+    def test9(self):
+        """Checks that an input of 9876543210 returns a string of '12-22-2282'"""
+        value = 9876543210
+        expected = '12-22-2282'
+        self.assertEqual(my_datetime(value), expected, msg='my_datetime({})'.format(value))
+
+    def test10(self):
+        """Checks that an input of 201653971200 returns a string of '02-29-8360"""
+        value = 201653971200
+        expected = '02-29-8360'
+        self.assertEqual(my_datetime(value), expected, msg='my_datetime({})'.format(value))
+
+    def test11(self):
+        """Checks that an input of 246813579 returns a string of '10-27-1977'"""
+        value = 246813579
+        expected = '10-27-1977'
+        self.assertEqual(my_datetime(value), expected, msg='my_datetime({})'.format(value))
+
 
 if __name__ == '__main__':
     unittest.main()
