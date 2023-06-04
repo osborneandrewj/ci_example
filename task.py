@@ -117,7 +117,66 @@ def my_datetime(num_sec):
         return None
 
     new_datetime = ''
+    num_days = num_sec // 86400
 
+    common_year = {
+        1: 31,
+        2: 28,
+        3: 31,
+        4: 30,
+        5: 31,
+        6: 30,
+        7: 31,
+        8: 31,
+        9: 30,
+        10: 31,
+        11: 30,
+        12: 31
+    }
+
+    leap_year = {
+        1: 31,
+        2: 29,
+        3: 31,
+        4: 30,
+        5: 31,
+        6: 30,
+        7: 31,
+        8: 31,
+        9: 30,
+        10: 31,
+        11: 30,
+        12: 31
+    }
+
+    current_year = 1970
+    current_month = 1
+    current_day = 1
+
+    while num_days > 0:
+
+        if is_leap_year(current_year) is True:
+            if num_days >= 366:
+                num_days = num_days - 366
+                current_year = current_year + 1
+            else:
+                if num_days > 0:
+                    month_and_days = get_current_month(leap_year, num_days)
+                    current_month = month_and_days[0]
+                    current_day = current_day + month_and_days[1]
+                    num_days = 0
+        else:
+            if num_days >= 365:
+                num_days = num_days - 365
+                current_year = current_year + 1
+            else:
+                if num_days > 0:
+                    month_and_days = get_current_month(common_year, num_days)
+                    current_month = month_and_days[0]
+                    current_day = current_day + month_and_days[1]
+                    num_days = 0
+
+    new_datetime = build_string(current_year, current_month, current_day)
     return new_datetime
 
 
@@ -140,6 +199,48 @@ def is_leap_year(year):
             return True
     else:
         return False
+
+
+def build_string(year, month, day):
+    """
+    Takes three ints representing a given year, a given month, and a
+    given day and builds a string representation of the date
+
+    Returns:
+    A string
+    """
+
+    if month < 10:
+        month_str = "0" + str(month)
+    else:
+        month_str = str(month)
+
+    if day < 10:
+        day_str = "0" + str(day)
+    else:
+        day_str = str(day)
+
+    return month_str + "-" + day_str + "-" + str(year)
+
+
+def get_current_month(calendar, days):
+    """
+    Calculates the month and the number of remaining days
+
+    Returns:
+    A tuple representing the month and number of remaining days, both
+    as an int
+    """
+
+    for i in range(1, (len(calendar) + 1)):
+        if (days - calendar[i]) < 0:
+            current_month = i
+            break
+        else:
+            days = days - calendar[i]
+            current_month = i
+
+    return current_month, days
 
 
 def conv_endian(num, endian='big'):
