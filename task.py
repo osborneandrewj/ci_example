@@ -169,7 +169,7 @@ def my_datetime(num_sec):
                             num_days = num_days - leap_year[i]
                             current_month = i
                     current_day = current_day + num_days
-                    num_days = 0      
+                    num_days = 0   
         else:
             if num_days >= 365:
                 num_days = num_days - 365
@@ -186,17 +186,7 @@ def my_datetime(num_sec):
                     current_day = current_day + num_days
                     num_days = 0
 
-    if current_month < 10:
-        month_str = "0" + str(current_month)
-    else:
-        month_str = str(current_month)
-
-    if current_day < 10:
-        day_str = "0" + str(current_day)
-    else:
-        day_str = str(current_day)
-
-    new_datetime = month_str + "-" + day_str + "-" + str(current_year)
+    new_datetime = build_string(current_year, current_month, current_day)
     return new_datetime
 
 
@@ -219,6 +209,28 @@ def is_leap_year(year):
             return True
     else:
         return False
+
+
+def build_string(year, month, day):
+    """
+    Takes three ints representing a given year, a given month, and a
+    given day and builds a string representation of the date
+    
+    Returns:
+    A string
+    """
+
+    if month < 10:
+        month_str = "0" + str(month)
+    else:
+        month_str = str(month)
+
+    if day < 10:
+        day_str = "0" + str(day)
+    else:
+        day_str = str(day)
+
+    return month_str + "-" + day_str + "-" + str(year)
 
 
 def conv_endian(num, endian='big'):
