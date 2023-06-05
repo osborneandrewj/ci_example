@@ -250,9 +250,26 @@ def conv_endian(num, endian='big'):
     A hexidecimal number as a string
     """
 
+    INT_TO_HEX_STRING_DICT = {0: "0", 1: "1", 2: "2", 3: "3", 4: "4", 5: "5",
+                              6: "6", 7: "7", 8: "8", 9: "9", 10: "A",
+                              11: "B", 12: "C", 13: "D", 14: "E", 15: "F"}
+
     if endian not in ("big", "little"):
         return None
 
-    conv_hex_str = "test"
+    conv_hex_str = ""
+    num_copy = num
 
-    return convert_hex_str
+    while num_copy > 0:
+        i = 0
+        while 16**i < num_copy:
+            i += 1
+        q, r = divmod(num_copy, 16**i)
+        if r > 15:
+            conv_hex_str = conv_hex_str + INT_TO_HEX_STRING_DICT[q] + " "
+            num_copy = num_copy - q
+        else:
+            conv_hex_str = conv_hex_str + INT_TO_HEX_STRING_DICT[r]
+            num_copy = 0  # end the while loop
+
+    return conv_hex_str

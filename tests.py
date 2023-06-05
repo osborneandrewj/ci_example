@@ -149,6 +149,14 @@ class FunctionThreeTests(unittest.TestCase):
         self.assertIsNone(conv_endian(value, flag),
                           msg='conv_num({})'.format(value))
 
+    def test2(self):
+        """Checks that a valid int with big endian flag is returned correctly"""
+        value = 954786
+        flag = "big"
+        expected = "0E 91 A2"
+        self.assertEqual(conv_endian(value, flag), expected,
+                          msg='conv_num({})'.format(value))
+
 
 if __name__ == '__main__':
     unittest.main()
