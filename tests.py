@@ -155,7 +155,7 @@ class FunctionThreeTests(unittest.TestCase):
         self.assertEqual(conv_endian(value), expected, msg='conv_endian({})'.format(value))
 
     def test3(self):
-        """Checks that an integer input of 954786 and endian = 'big' 
+        """Checks that an integer input of 954786 and endian = 'big'
         returns a string of 'OE 91 A2'"""
         value = 954786
         endian = 'big'
@@ -163,7 +163,7 @@ class FunctionThreeTests(unittest.TestCase):
         self.assertEqual(conv_endian(value, endian), expected, msg='conv_endian({})'.format(value))
 
     def test4(self):
-        """Checks that a negative integer input of -954786 and endian = 'little' 
+        """Checks that a negative integer input of -954786 and endian = 'little'
         returns a string of '-A2 91 0E'"""
         value = -954786
         endian = 'little'
@@ -171,7 +171,7 @@ class FunctionThreeTests(unittest.TestCase):
         self.assertEqual(conv_endian(value, endian), expected, msg='conv_endian({})'.format(value))
 
     def test5(self):
-        """Checks that an integer input of 954786 and endian = 'little' 
+        """Checks that an integer input of 954786 and endian = 'little'
         returns a string of 'A2 91 0E'"""
         value = 954786
         endian = 'little'
