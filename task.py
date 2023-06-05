@@ -244,9 +244,15 @@ def get_current_month(calendar, days):
 
 
 def conv_endian(num, endian='big'):
-    """Docstring here
+    """Takes a int and an endian value and returns a hexadecimal representation
 
     Returns:
+    A hexidecimal number as a string
     """
 
-    return None
+    if endian not in ("big", "little"):
+        return None
+
+    conv_hex_str = "test"
+
+    return convert_hex_str

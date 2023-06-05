@@ -1,5 +1,5 @@
 import unittest
-from task import conv_num, my_datetime, is_leap_year
+from task import conv_num, my_datetime, is_leap_year, conv_endian
 
 
 class TestCase(unittest.TestCase):
@@ -135,6 +135,19 @@ class FunctionTwoTests(unittest.TestCase):
         value = 246813579
         expected = '10-27-1977'
         self.assertEqual(my_datetime(value), expected, msg='my_datetime({})'.format(value))
+
+
+class FunctionThreeTests(unittest.TestCase):
+    """A battery of tests designed to check the integrity of
+    function conv_endian() in task.py
+    """
+
+    def test1(self):
+        """Checks that an invalid flag is returned None"""
+        value = 1234
+        flag = "invalid"
+        self.assertIsNone(conv_endian(value, flag),
+                          msg='conv_num({})'.format(value))
 
 
 if __name__ == '__main__':
