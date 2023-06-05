@@ -1,6 +1,6 @@
 """This is a project for CS 362 exploring continuous integration
 
-Authors: Andrew Osborne, John Oliver, nextAuth
+Authors: Andrew Osborne, John Oliver, Jonathan Alexander
 Date: Spring Quarter 2023
 """
 
@@ -244,9 +244,23 @@ def get_current_month(calendar, days):
 
 
 def conv_endian(num, endian='big'):
-    """Docstring here
+    """Converts an integer into a hexadecimal number
+
+    Takes an integer (num) and converts into a hexadecimal number (hex_num)
+    and return that number
 
     Returns:
+    hex_num as a string
     """
+    hex_symbols = '0123456789ABCDEF'
+    hex_num = ''
+    
+    while num > 0:
+        hex_symbol = hex_symbols[num & 0xF]
+        hex_num = hex_symbol + hex_num
+        num >>= 4
 
-    return None
+    hex_num = hex_num.zfill(len(hex_num) + (len(hex_num) % 2))
+    hex_num = ' '.join(hex_num[i:i + 2] for i in range(0, len(hex_num), 2))
+    
+    return hex_num

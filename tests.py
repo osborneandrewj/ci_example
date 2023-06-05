@@ -1,5 +1,5 @@
 import unittest
-from task import conv_num, my_datetime, is_leap_year
+from task import conv_num, my_datetime, is_leap_year, conv_endian
 
 
 class TestCase(unittest.TestCase):
@@ -135,6 +135,18 @@ class FunctionTwoTests(unittest.TestCase):
         value = 246813579
         expected = '10-27-1977'
         self.assertEqual(my_datetime(value), expected, msg='my_datetime({})'.format(value))
+
+
+class FunctionThreeTests(unittest.TestCase):
+    """
+    A battery of tests designed to check the integrity of
+    of function cov_endian in task.py
+    """
+    def test1(self):
+        """Checks that an integer input of 954786 returns a string of 'OE 91 A2'"""
+        value = 954786
+        expected = '0E 91 A2'
+        self.assertEqual(conv_endian(value), expected, msg='conv_endian({})'.format(value))
 
 
 if __name__ == '__main__':
