@@ -194,14 +194,14 @@ class FunctionThreeTests(unittest.TestCase):
 
     def test8(self):
         """Checks when num = num=-954786 and endian = 'little' returns None"""
-        value = num=-954786
+        value = num = -954786
         endian = 'little'
         expected = '-A2 91 0E'
         self.assertEqual(conv_endian(value, endian), expected, msg='conv_endian({})'.format(value))
 
     def test9(self):
         """Checks when num = num=-954786 and endian = 'small' returns None"""
-        value = num=-954786
+        value = num = -954786
         endian = 'small'
         expected = None
         self.assertEqual(conv_endian(value, endian), expected, msg='conv_endian({})'.format(value))
