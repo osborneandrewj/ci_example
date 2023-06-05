@@ -254,7 +254,7 @@ def conv_endian(num, endian='big'):
     """
     hex_symbols = '0123456789ABCDEF'
     hex_num = ''
-    
+
     while num > 0:
         hex_symbol = hex_symbols[num & 0xF]
         hex_num = hex_symbol + hex_num
@@ -262,5 +262,5 @@ def conv_endian(num, endian='big'):
 
     hex_num = hex_num.zfill(len(hex_num) + (len(hex_num) % 2))
     hex_num = ' '.join(hex_num[i:i + 2] for i in range(0, len(hex_num), 2))
-    
+
     return hex_num
