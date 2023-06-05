@@ -255,12 +255,27 @@ def conv_endian(num, endian='big'):
     hex_symbols = '0123456789ABCDEF'
     hex_num = ''
 
-    while num > 0:
-        hex_symbol = hex_symbols[num & 0xF]
-        hex_num = hex_symbol + hex_num
-        num >>= 4
+    if num < 0:
+        num_abs = abs(num)
+    else:
+        num_abs = num
 
-    hex_num = hex_num.zfill(len(hex_num) + (len(hex_num) % 2))
-    hex_num = ' '.join(hex_num[i:i + 2] for i in range(0, len(hex_num), 2))
+    while num_abs > 0:
+        hex_symbol = hex_symbols[num_abs & 0xF]
+        hex_num = hex_symbol + hex_num
+        num_abs >>= 4
+
+    if len(hex_num) % 2 != 0:
+        hex_num = '0' + hex_num
+
+    if endian == 'big':
+        hex_num = ' '.join(hex_num[i:i + 2] for i in range(0, len(hex_num), 2))
+    elif endian == 'little':
+        hex_num = ' '.join(hex_num[i:i + 2] for i in range(len(hex_num)-2, -1, -2))
+    else:
+        hex_num = None
+
+    if num < 0 and hex_num is not None:
+        hex_num = '-' + hex_num
 
     return hex_num
