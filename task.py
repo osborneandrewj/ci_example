@@ -91,7 +91,7 @@ def conv_num(num_str):
     if num_str[0] == "0" and num_str[1] == "X":
         conv_number = convert_hex(num_str)
         return conv_number
-    
+
     if num_str[1] == "0" and num_str[2] == "X":
         conv_number = convert_hex(num_str)
         return conv_number
