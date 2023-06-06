@@ -23,7 +23,7 @@ def is_str_valid(num_str):
     if num_str.count('.') > 1:
         return False
 
-    if num_str[0] == "0" and num_str[1] == "x":
+    if num_str[0] == "0" and num_str[1] in ("X", "x"):
         for i in range(2, len(num_str) - 1):
             if string.hexdigits.find(num_str[i]) == -1:
                 return False
@@ -72,9 +72,10 @@ def conv_num(num_str):
     if is_str_valid(num_str) is False:
         return None
 
+    num_str = num_str.upper()
     conv_number = 0
 
-    if num_str[0] == "0" and num_str[1] == "x":
+    if num_str[0] == "0" and num_str[1] == "X":
         conv_number = convert_hex(num_str)
         return conv_number
 

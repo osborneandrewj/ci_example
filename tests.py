@@ -68,6 +68,13 @@ class FunctionOneTests(unittest.TestCase):
         expected = None
         self.assertEqual(conv_num(value), expected,
                          msg='conv_num({})'.format(value))
+ 
+    def test10(self):
+        """Checks that string '0XAD4' with capitals is returned 2772"""
+        value = "0XAD4"
+        expected = 2772
+        self.assertEqual(conv_num(value), expected,
+                         msg='conv_num({})'.format(value))
 
 
 class FunctionTwoTests(unittest.TestCase):
