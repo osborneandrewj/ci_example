@@ -213,6 +213,44 @@ class FunctionThreeTests(unittest.TestCase):
         expected = None
         self.assertEqual(conv_endian(value, endian), expected, msg='conv_endian({})'.format(value))
 
+    def test8(self):
+        """Checks that an integer input of 0 returns '00'"""
+        value = 0
+        expected = '00'
+        self.assertEqual(conv_endian(value), expected, msg='conv_endian({})'.format(value))
+
+    def test9(self):
+        """Checks that an integer input of 1 returns '01'"""
+        value = 1
+        expected = '01'
+        self.assertEqual(conv_endian(value), expected, msg='conv_endian({})'.format(value))
+
+    def test10(self):
+        """Checks that an integer input of -1 returns '-01'"""
+        value = -1
+        expected = '-01'
+        self.assertEqual(conv_endian(value), expected, msg='conv_endian({})'.format(value))
+
+    def test11(self):
+        """Checks that an integer input of 123456789 returns '07 5B CD 15'"""
+        value = 123456789
+        expected = '07 5B CD 15'
+        self.assertEqual(conv_endian(value), expected, msg='conv_endian({})'.format(value))
+
+    def test12(self):
+        """Checks that an integer input of 123456789 and endain = 'big' returns '07 5B CD 15'"""
+        value = 123456789
+        endian = 'big'
+        expected = '07 5B CD 15'
+        self.assertEqual(conv_endian(value, endian), expected, msg='conv_endian({})'.format(value))
+
+    def test13(self):
+        """Checks that an integer input of 123456789 and endian = 'little' returns '15 CD 5B 07'"""
+        value = 123456789
+        endian = 'little'
+        expected = '15 CD 5B 07'
+        self.assertEqual(conv_endian(value, endian), expected, msg='conv_endian({})'.format(value))
+
 
 if __name__ == '__main__':
     unittest.main()
