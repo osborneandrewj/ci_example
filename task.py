@@ -23,10 +23,25 @@ def is_str_valid(num_str):
     if num_str.count('.') > 1:
         return False
 
-    if num_str[0] == "0" and num_str[1] == "x":
+    if is_hex_valid(num_str) is False:
+        return False
+
+    return True
+
+
+def is_hex_valid(num_str):
+    """Checks for a valid hex string and returns True/False"""
+
+    if num_str[0] == "0" and num_str[1] in ("X", "x"):  # for positive hex
         for i in range(2, len(num_str) - 1):
             if string.hexdigits.find(num_str[i]) == -1:
                 return False
+
+    elif num_str[1] == "0" and num_str[2] in ("X", "x"):  # for negative hex
+        for i in range(3, len(num_str) - 1):
+            if string.hexdigits.find(num_str[i]) == -1:
+                return False
+
     else:
         for c in num_str:
             if c not in (".", "-"):
@@ -44,8 +59,13 @@ def convert_hex(num_str):
 
     hex_dict = {"A": 10, "B": 11, "C": 12, "D": 13, "E": 14,
                 "F": 15}
+    negative_flag = False
     hex_num = 0
-    hex_str = num_str[2:len(num_str)]
+    if num_str[0] == "-":
+        negative_flag = True
+        hex_str = num_str[3:len(num_str)]
+    else:
+        hex_str = num_str[2:len(num_str)]
 
     for i, c in enumerate(hex_str):
         # get place value
@@ -55,6 +75,9 @@ def convert_hex(num_str):
         else:
             num_value = ord(c) - 48
         hex_num += p_value*num_value
+
+    if negative_flag is True:
+        hex_num = hex_num * -1
 
     return hex_num
 
@@ -72,9 +95,14 @@ def conv_num(num_str):
     if is_str_valid(num_str) is False:
         return None
 
+    num_str = num_str.upper()
     conv_number = 0
 
-    if num_str[0] == "0" and num_str[1] == "x":
+    if num_str[0] == "0" and num_str[1] == "X":
+        conv_number = convert_hex(num_str)
+        return conv_number
+
+    if num_str[1] == "0" and num_str[2] == "X":
         conv_number = convert_hex(num_str)
         return conv_number
 
