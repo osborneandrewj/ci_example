@@ -23,6 +23,15 @@ def is_str_valid(num_str):
     if num_str.count('.') > 1:
         return False
 
+    if is_hex_valid(num_str) is False:
+        return False
+
+    return True
+
+
+def is_hex_valid(num_str):
+    """Checks for a valid hex string and returns True/False"""
+
     if num_str[0] == "0" and num_str[1] in ("X", "x"):  # for positive hex
         for i in range(2, len(num_str) - 1):
             if string.hexdigits.find(num_str[i]) == -1:
@@ -32,6 +41,7 @@ def is_str_valid(num_str):
         for i in range(3, len(num_str) - 1):
             if string.hexdigits.find(num_str[i]) == -1:
                 return False
+
     else:
         for c in num_str:
             if c not in (".", "-"):
