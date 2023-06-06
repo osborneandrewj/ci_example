@@ -280,6 +280,9 @@ def conv_endian(num, endian='big'):
     Returns:
     hex_num as a string
     """
+    if num == 0:
+        return '00'
+
     hex_symbols = '0123456789ABCDEF'
     hex_num = ''
 
@@ -301,7 +304,7 @@ def conv_endian(num, endian='big'):
     elif endian == 'little':
         hex_num = ' '.join(hex_num[i:i + 2] for i in range(len(hex_num)-2, -1, -2))
     else:
-        hex_num = None
+        return None
 
     if num < 0 and hex_num is not None:
         hex_num = '-' + hex_num
